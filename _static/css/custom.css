@@ -1,0 +1,313 @@
+.wy-breadcrumbs li.wy-breadcrumbs-aside {
+  display: block;
+  width: 100%;
+  text-align: right;
+  margin-bottom: -25px;
+}
+
+@media screen and (max-width: 768px) {
+    .wy-nav-top {
+        background-color: #f2f2f2 !important;
+    }
+    .wy-nav-top a {
+        color: #585A5A !important;
+    }
+    /* Hide the original icon */
+    .wy-nav-top .fa-bars {
+        color: #585A5A !important;;
+    }
+}
+
+/* BREADCRUMBS */
+
+/* Breadcrumbs and Github button */
+.wy-breadcrumbs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.wy-breadcrumbs li.wy-breadcrumbs-aside {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.wy-breadcrumbs-aside a {
+  background: transparent;
+  color: #000000 !important;
+  padding: 0;
+  font-weight: normal;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+/* Neutralize link styling in breadcrumbs */
+.wy-breadcrumbs a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.wy-breadcrumbs .icon-home {
+  color: #000000;
+}
+
+/* Padding under breadcrumbs */
+.rst-content > div[role="navigation"] > hr {
+  display: none;
+}
+
+.rst-content > div[role="navigation"] {
+  margin-bottom: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .wy-breadcrumbs {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    white-space: normal;
+  }
+  .wy-breadcrumbs li.wy-breadcrumbs-aside {
+    width: 100%;
+    text-align: left;
+    margin-top: 10px;
+  }
+}
+
+/* BACKGROUNDS */
+
+/* Full background color */
+body,
+.wy-grid-for-nav,
+.wy-nav-content,
+.wy-nav-content-wrap,
+.rst-content {
+  background-color: #ffffff !important;
+}
+
+/* Top sidebar background */
+.wy-nav-side .wy-side-nav-search {
+  background-color: #f2f2f2;
+}
+
+/* Bottom sidebar background */
+.wy-nav-side {
+  background-color: #f2f2f2;
+}
+
+.wy-menu-vertical li a {
+  color: #000000;
+}
+
+.wy-side-nav-search {
+  padding: 25px;
+}
+
+.wy-menu-vertical li.toctree-l1 {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+/* SIDEBAR TOP */
+
+/* Sidebar home text/link */
+.wy-side-nav-search .icon-home {
+  text-align: left;
+  color: #000000;
+  display: block;
+  font-weight: 600;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  padding: 12px;
+}
+
+.wy-side-nav-search .icon-home:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+.wy-side-nav-search .icon-home::before {
+  content: none;
+}
+
+/* LOGO */
+.wy-side-nav-search a.icon-home img {
+  display: block;
+  width: 150px;
+  height: auto;
+  margin-left: 0;
+  padding: 4px 0;
+}
+
+/* SIDEBAR SEARCH BAR */
+
+/* Search form container */
+.wy-side-nav-search form {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0;
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Search icon block */
+.wy-side-nav-search form::before {
+  content: "\f002";
+  font-family: FontAwesome;
+  font-size: 14px;
+  color: #585A5A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: #ffffff;
+}
+
+/* Input box */
+.wy-side-nav-search input[type="text"] {
+  height: 36px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 0;
+  background-color: #ffffff;
+  font-size: 0.9em;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+/* SIDEBAR NAVIGATION */
+
+/* Main sidebar links */
+.wy-menu-vertical li.toctree-l1 > a {
+  color: #000000;
+  background-color: transparent;
+}
+
+/* Hover effect */
+.wy-menu-vertical .toctree-l2 > a:hover {
+  background-color: #e6e6e6 !important;
+  color: #000000 !important;
+}
+
+.wy-menu-vertical .toctree-l1 > a:hover {
+  background-color: #e6e6e6 !important;
+  color: #000000 !important;
+}
+
+.wy-menu-vertical .toctree-l3 > a:hover {
+  background-color: #e6e6e6 !important;
+  color: #000000 !important;
+}
+
+
+/* Remove borders from sidebar container */
+.wy-nav-side {
+  border: none;
+  box-shadow: none;
+}
+
+/* Remove borders from sidebar items */
+.wy-menu-vertical li,
+.wy-menu-vertical li a,
+.wy-menu-vertical li.current > a,
+.wy-menu-vertical li.toctree-l2 > a {
+  border: none !important;
+  box-shadow: none !important;
+  background: none;
+  background-color: transparent !important;
+}
+
+/* SIDEBAR VERSIONS DROPDOWN */
+
+/* Versions container */
+.rst-versions {
+  background-color: #ffffff !important;
+  color: #000000;
+  border-top: 1px solid #e0e0e0;
+  padding: 0px;
+  font-size: 0.9em;
+}
+
+/* Versions dropdown header */
+.rst-current-version {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Fix icons color */
+.rst-current-version .fa-book,
+.rst-current-version .fa-caret-down {
+  margin-right: 8px;
+  color: #585A5A !important;
+}
+
+/* Dropdown content (branches) */
+.rst-other-versions {
+  margin-top: 10px;
+}
+
+/* Section headings */
+.rst-other-versions dt {
+  color: #000000 !important;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+/* Version links (under Branches) */
+.rst-other-versions dd a {
+  color: #000000 !important;
+  background-color: transparent;
+  text-decoration: none;
+  padding: 4px 8px;
+  display: inline-block;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.rst-other-versions dd a:hover {
+  background-color: #f0f0f0;
+}
+
+/* HIGHLIGHT LINK FUNCTION */
+
+/* Underline hover functionality for text links ONLY */
+.rst-content a:not(:has(img)):not(.btn):not(button):not(.icon-home) {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+/* Underline effect */
+.rst-content a:not(:has(img)):not(.btn):not(button):not(.icon-home):not(.wy-breadcrumbs a)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: #ffcc00;
+  pointer-events: none;
+}
+
+/* Highlight on hover */
+.rst-content a:not(:has(img)):not(.btn):not(button):not(.icon-home):not(.wy-breadcrumbs a):hover {
+  background-color: #ffcc00;
+  color: #000000;
+}

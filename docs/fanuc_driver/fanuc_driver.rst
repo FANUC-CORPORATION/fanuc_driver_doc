@@ -15,3 +15,4 @@ fanuc_driver
    fanuc_unboxing
    controller_usage
    controller_customization
+   create_your_moveit_config

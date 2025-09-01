@@ -81,7 +81,19 @@ ros2 launch fanuc_crx_description view_crx.launch.py robot_model:=crx10ia
 
 ![Starting RViz view after running view_crx.launch.py.](/_static/images/joint_state_publisher.png "RViz with JointStatePublisher")
 
-## 4. Launching with Mock Hardware
+## 4. Create Moveit Config
+
+`fanuc_moveit_config` is an example MoveIt configuration package which supports the following robot models.
+
+- CRX-5iA
+- CRX-10iA
+- CRX-10iA/L
+- CRX-20iA/L
+- CRX-30iA
+
+When you want to use other models, create your MoveIt configuration package following this [page](../fanuc_driver/create_your_moveit_config.md).
+
+## 5. Launching with Mock Hardware
 
 The `fanuc_moveit` launch file starts ROS processes to control a URDF model using ros2_control and MoveIt2.
 
@@ -110,7 +122,7 @@ The robot will move slowly to the goal.
 Now, set the speed scaling factor to 0% and see it pause its motion.
 Set it back to 100% and the robot will complete the remainder of the trajectory at its nominal speed.
 
-## 5. Launching with Physical Hardware
+## 6. Launching with Physical Hardware
 
 Now we will use the same SJTC on the physical hardware.
 We will use the same `fanuc_moveit` launch file, but provide a different set of arguments that will use the physical hardware interface instead of mock hardware.

@@ -14,11 +14,17 @@ The controller will automatically terminate the connection when the client fails
 
 Once the connection is terminated, the client needs to be restarted.
 
-You can change the default time by changing the system variable `$rmi_cfg.$discnt_tim`. Setting this variable to 0 disables the timeout check.
+**For R-30iB Mini Plus:**
+To change the default time, modify the system variable `$rmi_cfg.$discnt_tim`. Setting this variable to 0 disables the timeout check.
 
-### I cannot command motion and received a SYST-322 Auto Status Check timeout alarm
+**For R-50iA:**
+To change the default time, go to the MENU->UTILITIES->RMI Position/Setup->SETUP screen on the teach pendant. Setting "Disconnect Time" to 0 disables the timeout check.
 
- When the robot is keep moving for longer than the Auto Status Check timeout setting, a SYST-322 Auto status check time out alarm will be posted and the robot will stop.
+![RMI Setup Screen.](/_static/images/rmi-setup-screen.png "RMI Setup Screen")
+
+### I cannot command motion and received a `SYST-322 Auto Status Check timeout` alarm
+
+When the robot is keep moving for longer than the Auto Status Check timeout setting, a `SYST-322 Auto status check timeout` alarm will be posted and the robot will stop.
 
 This alarm can be suppressed in one of two ways: change the timeout value or disable the timeout. Both are safety features which require applying DCS changes and cycling power.
 

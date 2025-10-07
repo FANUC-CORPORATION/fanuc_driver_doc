@@ -17,7 +17,12 @@ This guide assumes basic familiarity with ROS 2, Ubuntu, and FANUC hardware.
 
 - **Operating System:** Ubuntu 22.04 LTS (optionally with real-time PREEMPT_RT kernel installed)
 - **ROS 2 Distribution:** Humble Hawksbill
-- **FANUC Robot Controller:** R-30iB Mini Plus with J519 Stream Motion and R912 Remote Motion.
+- **FANUC Robot Controller:**
+  - R-30iB Mini Plus
+  - R-50iA
+- **Software Options:**
+  - J519 Stream Motion and R912 Remote Motion, or
+  - S636 External Control Package (includes both J519 and R912)
 - **FANUC Robot:** CRX series
 
 ---
@@ -90,6 +95,7 @@ ros2 launch fanuc_crx_description view_crx.launch.py robot_model:=crx10ia
 - CRX-10iA/L
 - CRX-20iA/L
 - CRX-30iA
+- CRX/30-18A
 
 When you want to use other models, create your MoveIt configuration package following this [page](../fanuc_driver/create_your_moveit_config.md).
 
@@ -129,7 +135,15 @@ We will use the same `fanuc_moveit` launch file, but provide a different set of 
 
 ### Robot Controller Setup
 
-Requires software version V9.40P/77 or later with J519 Stream Motion and R912 Remote Motion.
+Requires software version:
+
+- R-30iB Mini Plus: V9.40P/77 or later
+- R-50iA: [contact FANUC](#obtain-support)
+
+Requires software options:
+
+- J519 Stream Motion and R912 Remote Motion, or
+- S636 External Control Package (includes J519 and R912)
 
 Confirm that the required robot controller software is installed
 
@@ -147,8 +161,8 @@ Confirm that the required robot controller software is installed
     Software options are listed in alphabetical order.
     ```
 
-5. Cursor until you find **Stream Motion J519 and Remote Motion R912**.
-6. If you cannot find Stream Motion J519 and Remote Motion R912, [contact FANUC](#obtain-support) to obtain the software option.
+5. Cursor until you find **Stream Motion J519 and Remote Motion R912** or **S636 External Control Package**.
+6. If you cannot find Stream Motion J519 and Remote Motion R912, or S636 External Control Package, [contact FANUC](#obtain-support) to obtain the software option.
 
 ### Establish Payload Settings
 

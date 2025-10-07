@@ -17,8 +17,11 @@ The following connections must be made:
 | Ethernet      |            | x                | x        |
 | Power         | x          |                  |          |
 | Teach Pendant |            | x                |          |
-| RMP           | x          | x                |          |
+| RMP / Robot Connection Cable         | x          | x                |          |
 | GND           | x          | x                |          |
+
+As an example, the following images show connections for a CRX-10iA/L robot on an R-30iB Mini Plus controller.
+For other robots, refer to FANUC robot documentation.
 
 ![Robot base connections.](/_static/images/robot-base-connections.png "Connect cables to the robot base")
 

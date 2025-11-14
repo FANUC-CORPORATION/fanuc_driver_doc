@@ -9,7 +9,7 @@
 Currently supported FANUC-specific controllers include:
 
 * **scaled_joint_trajectory_controller**:  a variation of the standard joint_trajectory_controller, which allows the speed to be scaled up or down between 0% and 100%.
-* **fanuc_gpio_controller**:  provides the ability to access controller data such as I/O, numeric registers, and robot status.
+* **fanuc_gpio_controller**:  provides the ability to access controller data such as I/O, numeric registers, position registers, robot status, and payload.
 
 ## fanuc_controllers/scaled_joint_trajectory_controller
 
@@ -19,11 +19,22 @@ This controller is a variation of the standard joint_trajectory_controller, whic
 
 * Speed scaling is a float value ranging from 0 to 100, representing the percentage of robot execution speed following the trajectory.
 * The `scaled_joint_trajectory_controller` subscribes to this speed scaling value and generates commands that automatically scale the speed up or down between 0% (robot stops) and 100% (robot runs at full execution speed).
-* At first release, the `/speed_scaling_factor` topic is provided to allow adjustment of the robot speed.
+* The `/speed_scaling_factor` topic is provided to allow adjustment of the robot speed.
+
+### Collaborative speed clamping
+
+* Collaborative robots are equipped with the collaborative speed clamping function. The robot controller automatically reduces the commanded speed to ensure it does not exceed the collaborative speed limit.
+* The `scaled_joint_trajectory_controller` receives the `Status/collaborative_speed_scaling` value from fanuc_driver via the status interface. This minimizes deviation between the commanded and the actual positions.
+* This function is disabled when the disabling input for the collaborative speed clamping is ON. Refer to Collaborative Robot Function Manual for details.
+
+```{note}
+* When the original trajectory is not smooth or impossible for the robot model, the motion may become jittery or there is a possibility that the speed may exceed the limits even when the speed clamping function is active.
+* The speed is decreased before reaching the limit with reasonably conservative assumptions because the robot controller does not know the future trajectory. For maximum performance, disable the function and create trajectories in which any part of the robot stay below the collaborative speed limit.
+```
 
 ## fanuc_controllers/fanuc_gpio_controller
 
-This controller provides the ability to access controller data such as I/O, numeric registers, and robot status.
+This controller provides the ability to access controller data such as I/O, numeric registers, position registers, robot status, and payload.
 
 ### Published topics
 
@@ -36,7 +47,7 @@ This controller provides the ability to access controller data such as I/O, nume
 * `~/connection_status [fanuc_msgs/msg/ConnectionStatus]`: Publishes whether the robot is connected or not. If this is `false`, no commands can be sent to the robot.
 * `~/robot_status [fanuc_msgs/msg/RabotStatus]`: Synchronized robot status (e.g. `in_error`, `tp_enabled`, `e_stopped`, `motion_possible`, `contact_stop_mode`). The `contact_stop_mode` publishes an integer with the following definitions (0: NONE (The robot is not in collaborative mode, or the safety sensor is disabled), 1: SAFE, 2: STOP, 3: DSBL, 4: ESCP).
 * `~/robot_status_ext [fanuc_msgs/msg/RobotStatusExt]`: Asynchronized robot status (e.g. `error_code`, `in_motion`, `drives_powered`, `gen_override`, `speed_clamp_limit`)
-* `~/collaborative_speed_scaling [fanuc_msgs/msg/CollaborativeSpeedScaling]`: Publishes the robots current collaborative speed scaling, between 0 to 1. Use this as a reference for the `scaled_joint_trajectory_controller` to avoid the robot violating the collaborative speed limit. This is only available for collaborative robots in collaborative mode.
+* `~/collaborative_speed_scaling [fanuc_msgs/msg/CollaborativeSpeedScaling]`: Publishes the robot controller's collaborative speed clamping scaling value, either 0 or 1. For non-collaborative robots, this value is alawys 1. The same value will be automatically applied to the `scaled_joint_trajectory_controller` via the status interface to minimize path deviation. If you want to further define your own scaling, you can use the topic `/speed_scaling_factor`.
 
 ### Advertised services
 
@@ -44,12 +55,59 @@ This controller provides the ability to access controller data such as I/O, nume
 * `~/get_analog_io [fanuc_msgs/srv/GetAnalogIO]`: Get asynchronized analog I/O (e.g. `AO`, `AI`)
 * `~/get_group_io [fanuc_msgs/srv/GetGroupIO]`: Get asynchronized group I/O (e.g. `GO`, `GI`)
 * `~/get_num_reg [fanuc_msgs/srv/GetNumReg]`: Get asynchronized numeric register
+* `~/get_pos_reg [fanuc_msgs/srv/GetPosReg]`: Get asynchronized position register
 * `~/set_bool_io [fanuc_msgs/srv/SetBoolIO]`: Set asynchronized bool I/O (e.g. `DO`, `RO`, `F`)
 * `~/set_analog_io [fanuc_msgs/srv/SetAnalogIO]`: Set asynchronized analog I/O (e.g. `AO`)
 * `~/set_group_io [fanuc_msgs/srv/SetGroupIO]`: Set asynchronized group I/O (e.g. `GO`)
 * `~/set_num_reg [fanuc_msgs/srv/SetNumReg]`: Set asynchronized numeric register
+* `~/set_pos_reg [fanuc_msgs/srv/SetPosReg]`: Set asynchronized position register
 * `~/set_gen_override [fanuc_msgs/srv/SetGenOverride]`: Set robot GenOverride. This value needs to stay at 100 when the hardware interface is in active state.
-* `~/set_payload_id [fanuc_msgs/srv/SetPayloadID]`: Sets the robot payload schedule number.
+* `~/set_payload_id [fanuc_msgs/srv/SetPayloadID]`: Set the robot payload schedule number.
+* `~/set_payload_value [fanuc_msgs/srv/SetPayloadValue]`: Set the robot payload value.
+* `~/set_payload_comp [fanuc_msgs/srv/SetPayloadComp]`: Set the robot payload compensation.
+
+### Getting and setting asynchronized position register
+
+Robot controller software V9.40P/82 or later and ROS 2 driver v1.1.0 or later support getting and setting asynchronized position register via ROS 2 services.
+
+#### Getting asynchronized position register [fanuc_gpio_controller/get_pos_reg]
+
+* If the position register is in Cartesian representation, you can read the configuration and position. If the position register is in Joint representation, you can read the joint angles.
+* Irrelevant fields will still be shown in the response as zeros. Please ignore.
+
+#### Setting asynchronized position register [fanuc_gpio_controller/set_pos_reg]
+
+* If the position register is in Cartesian representation, the configuration and position are required. If the position register is in Joint representation, joint angles are required.
+* The representation string ('Cartesian' or 'Joint') is NOT case-sensitive. If the representation is not specified or mis-specified, it will use 'Cartesian' as the default.
+* If a required field is missing in the service call, that field will be automatically set to 0 by default.
+
+### Setting payload value and payload compensation
+
+Robot controller software V9.40P/82 or later and ROS 2 driver v1.1.0 or later support setting payload value and payload compensation on the fly via ROS 2 services.
+
+#### Setting payload value [fanuc_gpio_controller/set_payload_value]
+
+* ROS 2 service units:
+  * Mass: kg
+  * Center of Gravity: m
+  * Inertia: kgm^2
+* "use_in" is a Boolean that indicates whether the robot should set the inertia values. True means the robot will set the inertia values. False means the robot will ignore the inertia values.
+* All arguments in the service are required. If an argument is missing in the service call, that argument will be automatically set to 0 by default.
+* This service is intended to be used by non-collaborative robots. Collaborative robots should use the service to set payload compensation. In case collaborative robots use this service, the payload value will still be set accordingly, but since payload is part of the DCS settings, Stream Motion and RMI will end and the ROS 2 driver will post a "no longer streaming" error. Users need to apply DCS, cycle power, confirm payload, and relaunch ROS 2 driver to continue.
+* If the payload schedule number is invalid or out of range, the service won't return successful.
+
+#### Setting payload compensation [fanuc_gpio_controller/set_payload_comp]
+
+* ROS 2 service units:
+  * Mass: kg
+  * Center of Gravity: m
+  * Inertia: kgm^2
+* All arguments in the service are required. If an argument is missing in the service call, that argument will be automatically set to 0 by default.
+* This service is intended to be used by collaborative robots only.
+* Under any of the following conditions, the service won't be successful:
+  * The service is used with non-collaborative robots.
+  * The payload schedule does not match the current controller payload schedule (i.e., the payload compensation schedule).
+  * Payload compensation is not fully enabled on the robot (please see the Operator's Manual (Collaborative Robot Function) for details on enabling payload compensation).
 
 ### Configuring high-frequency I/O
 
@@ -64,6 +122,7 @@ The GPIO Controller’s YAML configuration file behaves as follows:
 * The configuration file defines the memory map for each topic type.
 * Invalid configurations will cause a Hardware Interface initialization failure and an error will be reported in the logfile.
 * If a topic is not configured (e.g., no Analog I/O is needed in the application), the topic will remain empty.
+* When outputs or numeric registers are added to the command section of the GPIO configuration YAML file, once the ROS 2 driver is launched those output and numeric register values in the controller will be set to false or zero.
 
 #### Limitations
 

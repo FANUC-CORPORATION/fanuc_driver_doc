@@ -12,4 +12,5 @@ fanuc_description
    :maxdepth: 1
 
    fanuc_description_overview
+   supported_models
    robot_model_extensions

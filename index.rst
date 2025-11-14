@@ -25,14 +25,6 @@ Welcome to the FANUC ros2_control driver, which supports high-frequency motion a
 The FANUC ros2_control driver is built using the Robot Operating System (ROS) 2, an open-source framework, and libraries designed for building robot applications.
 The following documentation provides information on how to use ros2_control driver in conjunction with FANUC Robots.
 
-The following R-30iB Plus robot models are currently supported with more models and R-50iA being supported soon:
-
-- CRX-5iA
-- CRX-10iA
-- CRX-10iA/L
-- CRX-20iA/L
-- CRX-30iA
-
 Table Of Contents
 -----------------
 

@@ -23,7 +23,7 @@ This guide assumes basic familiarity with ROS 2, Ubuntu, and FANUC hardware.
 - **Software Options:**
   - J519 Stream Motion and R912 Remote Motion, or
   - S636 External Control Package (includes both J519 and R912)
-- **FANUC Robot:** CRX series
+- **FANUC Robot:** See [the supported models page](../fanuc_description/supported_models.md).
 
 ---
 
@@ -167,13 +167,20 @@ Confirm that the required robot controller software is installed
 ### Establish Payload Settings
 
 Accurately setting your robot's payload is important.
+
+#### Prior to `ROS 2 driver v1.1.0` and `controller software V9.40P/82`
+
 Changing payload requires the client to execute the following steps:
 
 1. Bring the robot to a stop.
 2. Deactivate the hardware interface.
-3. Change the payload.
+3. Change the payload schedule.
 4. Reactivate the hardware interface.
 5. Resume your application.
+
+#### Later than `ROS 2 driver v1.1.0` and `controller software V9.40P/82`
+
+You can use ROS 2 service to change payload value or payload compensation on the fly. See [Setting payload value and payload compensation](/docs/fanuc_driver/controller_usage.md#setting-payload-value-and-payload-compensation).
 
 ### Driver Network Configuration
 

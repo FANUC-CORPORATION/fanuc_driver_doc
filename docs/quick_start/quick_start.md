@@ -184,8 +184,8 @@ You can use ROS 2 service to change payload value or payload compensation on the
 
 ### Driver Network Configuration
 
-The ROS 2 Control Driver requires a network connection to the robot, which can be either port 1 or port 2.
-It is recommended that the ROS 2 network be on a port that is isolated from all other Ethernet communications.
+The ros2_control Driver requires a network connection to the robot, which can be either port 1 or port 2.
+It is recommended that the ros2_control network to the robot be on a port that is isolated from all other Ethernet communications.
 
 First, we will set IP addresses for each of the Ethernet connections.
 

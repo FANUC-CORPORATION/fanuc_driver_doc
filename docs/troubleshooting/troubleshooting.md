@@ -14,7 +14,7 @@ The controller will automatically terminate the connection when the client fails
 
 Once the connection is terminated, the client needs to be restarted.
 
-**For R-30iB Mini Plus:**
+**For R-30iB Plus:**
 To change the default time, modify the system variable `$rmi_cfg.$discnt_tim`. Setting this variable to 0 disables the timeout check.
 
 **For R-50iA:**
@@ -43,3 +43,17 @@ This may be attributed to your PC's high CPU load; try the following suggestions
 
 - Computers with high CPU loading may miss their command send windows, causing the robot to fault. You might need to adjust your real-time process priorities to ensure the timing of all command send windows or limit the number of concurrent tasks.
 - The Ubuntu PC should have the real-time kernel enabled.
+
+### I cannot command motion and received a `MOTN-615 ST:Please Disable Brake Control.` alarm
+
+When you add J519 to an existing robot controller, you must manually disable the brake control function.
+
+**For R-30iB Plus:**
+
+Go to the MENU->SYSTEM->System Variables screen on the teach pendant.
+Set `$PARAM_GROUP[1].$SV_OFF_ENB[1to9]` to FALSE and repower the robot controller.
+
+**For R-50iA:**
+
+Go to the MENU->SETUP->Brake Control screen on the teach pendant.
+For all axes, set the "BRK_CTRL" value to DISABLE and repower the robot controller.

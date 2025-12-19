@@ -31,6 +31,7 @@ Table Of Contents
 .. toctree::
    :maxdepth: 2
 
+   docs/environment/environment
    docs/quick_start/quick_start
    docs/fanuc_description/fanuc_description
    docs/fanuc_driver/fanuc_driver

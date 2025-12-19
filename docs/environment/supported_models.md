@@ -7,7 +7,7 @@
 
 # Supported URDF Models
 
-## CRX series in fanuc_crx_desciption
+## CRX series in fanuc_crx_description
 
 | R-30iB Plus name | R-50iA name | URDF name |
 | --- | --- | --- |
@@ -18,7 +18,7 @@
 | CRX-20iA/L | N/A | crx20ia_l |
 | CRX-30iA (CRX-25iA) | CRX/30-18A | crx30ia |
 
-## LR Mate series in fanuc_lrmate_decription
+## LR Mate series in fanuc_lrmate_description
 
 | R-30iB Plus name | R-50iA name | URDF name |
 | --- | --- | --- |
@@ -42,6 +42,7 @@
 | R-30iB Plus name | R-50iA name | URDF name |
 | --- | --- | --- |
 | M-20iD/25 | M-20/25-18D | m20_25-18d |
+| M-20iD/35 | M-20/35-18D | m20_35-18d |
 
 ## R-2000 series in fanuc_r2000_description
 

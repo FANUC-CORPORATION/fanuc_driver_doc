@@ -15,15 +15,7 @@ This guide assumes basic familiarity with ROS 2, Ubuntu, and FANUC hardware.
 
 ## System Requirements
 
-- **Operating System:** Ubuntu 22.04 LTS (optionally with real-time PREEMPT_RT kernel installed)
-- **ROS 2 Distribution:** Humble Hawksbill
-- **FANUC Robot Controller:**
-  - R-30iB Mini Plus
-  - R-50iA
-- **Software Options:**
-  - J519 Stream Motion and R912 Remote Motion, or
-  - S636 External Control Package (includes both J519 and R912)
-- **FANUC Robot:** See [the supported models page](../fanuc_description/supported_models.md).
+See [the system requirements page](../environment/system_requirements.md).
 
 ---
 
@@ -137,8 +129,9 @@ We will use the same `fanuc_moveit` launch file, but provide a different set of 
 
 Requires software version:
 
+- R-30iB Plus, R-30iB Mate Plus: V9.40P/81 or later
 - R-30iB Mini Plus: V9.40P/77 or later
-- R-50iA: [contact FANUC](#obtain-support)
+- R-50iA series: V10.10P/26 or later
 
 Requires software options:
 
@@ -168,7 +161,7 @@ Confirm that the required robot controller software is installed
 
 Accurately setting your robot's payload is important.
 
-#### Prior to `ROS 2 driver v1.1.0` and `controller software V9.40P/82`
+#### Prior to `ROS 2 driver v1.1.0` and `controller software V9.40P/83`
 
 Changing payload requires the client to execute the following steps:
 
@@ -178,14 +171,14 @@ Changing payload requires the client to execute the following steps:
 4. Reactivate the hardware interface.
 5. Resume your application.
 
-#### Later than `ROS 2 driver v1.1.0` and `controller software V9.40P/82`
+#### Later than `ROS 2 driver v1.1.0` and `controller software V9.40P/83`
 
 You can use ROS 2 service to change payload value or payload compensation on the fly. See [Setting payload value and payload compensation](/docs/fanuc_driver/controller_usage.md#setting-payload-value-and-payload-compensation).
 
 ### Driver Network Configuration
 
-The ROS 2 Control Driver requires a network connection to the robot, which can be either port 1 or port 2.
-It is recommended that the ROS 2 network be on a port that is isolated from all other Ethernet communications.
+The FANUC ROS 2 Driver requires a network connection to the robot, which can be either port 1 or port 2.
+It is recommended that the communication between the driver and the robot be on a port that is isolated from all other Ethernet communications.
 
 First, we will set IP addresses for each of the Ethernet connections.
 

@@ -32,7 +32,7 @@ This repository contains the FANUC hardware interface implementation, ros2_contr
 - Getting robot status.
 - Setting payload schedule.
 
-### Starting with `ROS 2 driver v1.1.0` and `controller software V9.40P/82`
+### Starting with `ROS 2 driver v1.1.0` and `controller software V9.40P/83`
 
 - Automatic speed clamping if command exceeds collaborative speed limit of the robot.
 - Forward position controller.

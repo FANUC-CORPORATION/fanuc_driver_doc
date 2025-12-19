@@ -5,11 +5,12 @@
    SPDX-License-Identifier: Apache-2.0
 
 =================
-fanuc_description
+Environment
 =================
 
 .. toctree::
    :maxdepth: 1
 
-   fanuc_description_overview
-   robot_model_extensions
+   system_requirements
+   supported_models
+   roboguide

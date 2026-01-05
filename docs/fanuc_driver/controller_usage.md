@@ -68,7 +68,7 @@ This controller provides the ability to access controller data such as I/O, nume
 
 ### Getting and setting asynchronized position register
 
-Robot controller software V9.40P/83 or later and ROS 2 driver v1.1.0 or later support getting and setting asynchronized position register via ROS 2 services.
+Robot controller software V9.40P/80 or later and ROS 2 driver v1.1.0 or later support getting and setting asynchronized position register via ROS 2 services.
 
 #### Getting asynchronized position register [fanuc_gpio_controller/get_pos_reg]
 
@@ -83,7 +83,7 @@ Robot controller software V9.40P/83 or later and ROS 2 driver v1.1.0 or later su
 
 ### Setting payload value and payload compensation
 
-Robot controller software V9.40P/83 or later and ROS 2 driver v1.1.0 or later support setting payload value and payload compensation on the fly via ROS 2 services.
+Robot controller software V9.40P/80 or later and ROS 2 driver v1.1.0 or later support setting payload value and payload compensation on the fly via ROS 2 services.
 
 #### Setting payload value [fanuc_gpio_controller/set_payload_value]
 

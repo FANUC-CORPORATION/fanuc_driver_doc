@@ -161,7 +161,7 @@ Confirm that the required robot controller software is installed
 
 Accurately setting your robot's payload is important.
 
-#### Prior to `ROS 2 driver v1.1.0` and `controller software V9.40P/83`
+#### Prior to `ROS 2 driver v1.1.0` and `controller software V9.40P/84`
 
 Changing payload requires the client to execute the following steps:
 
@@ -171,7 +171,7 @@ Changing payload requires the client to execute the following steps:
 4. Reactivate the hardware interface.
 5. Resume your application.
 
-#### Later than `ROS 2 driver v1.1.0` and `controller software V9.40P/83`
+#### Later than `ROS 2 driver v1.1.0` and `controller software V9.40P/84`
 
 You can use ROS 2 service to change payload value or payload compensation on the fly. See [Setting payload value and payload compensation](/docs/fanuc_driver/controller_usage.md#setting-payload-value-and-payload-compensation).
 

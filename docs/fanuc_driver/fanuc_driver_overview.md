@@ -6,7 +6,7 @@
 <!-- markdownlint-disable MD013 -->
 # Overview
 
-This repository contains the FANUC hardware interface implementation, ros2_control Scaled Joint Trajectory Controller (SJTC), ros2_control configuration files, MoveIt2 configuration files, and examples for launching motion planning with mock hardware and physical hardware.
+This repository contains the FANUC hardware interface implementation, FANUC ros2_control controllers, ros2_control configuration files, MoveIt2 configuration files, and examples for launching motion planning with mock hardware and physical hardware.
 
 ## Repository Layout
 
@@ -22,9 +22,9 @@ This repository contains the FANUC hardware interface implementation, ros2_contr
 
 ## Feature List
 
-### Starting with `ROS 2 driver v1.0.0` and `controller software V9.40P/77`
+### Starting with `ROS 2 driver v1.0.0` and `controller software V9.40P/77, V10.10P/26`
 
-- Scaled Joint trajectory controller.
+- Scaled joint trajectory controller.
 - Automatic handling of missed command packets.
 - Automatic smoothing if command exceeds acceleration and jerk limits of the robot.
 - GPIO controller.
@@ -32,9 +32,13 @@ This repository contains the FANUC hardware interface implementation, ros2_contr
 - Getting robot status.
 - Setting payload schedule.
 
-### Starting with `ROS 2 driver v1.1.0` and `controller software V9.40P/84`
+### Starting with `ROS 2 driver v1.1.0` and `controller software V9.40P/84, V10.10P/28`
 
 - Automatic speed clamping if command exceeds collaborative speed limit of the robot.
 - Forward position controller.
 - Getting and setting position registers.
 - Setting payload value and payload compensation.
+
+### Starting with `ROS 2 driver v1.1.1` and `controller software V9.40P/85`
+
+- Force sensor broadcaster

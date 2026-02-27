@@ -9,6 +9,7 @@
 Currently supported FANUC-specific controllers include:
 
 * **scaled_joint_trajectory_controller**:  a variation of the standard joint_trajectory_controller, which allows the speed to be scaled up or down between 0% and 100%.
+* **fanuc_force_sensor_broadcaster**:  publishes the robot resultant force/torque at the flange and the force sensor type.
 * **fanuc_gpio_controller**:  provides the ability to access controller data such as I/O, numeric registers, position registers, robot status, and payload.
 
 ## fanuc_controllers/scaled_joint_trajectory_controller
@@ -30,6 +31,20 @@ This controller is a variation of the standard joint_trajectory_controller, whic
 ```{note}
 * When the original trajectory is not smooth or impossible for the robot model, the motion may become jittery or there is a possibility that the speed may exceed the limits even when the speed clamping function is active.
 * The speed is decreased before reaching the limit with reasonably conservative assumptions because the robot controller does not know the future trajectory. For maximum performance, disable the function and create trajectories in which any part of the robot stay below the collaborative speed limit.
+```
+
+## fanuc_controllers/fanuc_force_sensor_broadcaster
+
+This controller publishes the robot resultant force/torque at the flange and the force sensor type. This controller is available with robot controller software V9.40P/85 or later and ROS 2 driver v1.1.1.
+
+* Robot resultant force/torque at the flange will be published to the topic `/fanuc_force_sensor_broadcaster/force_sensor` (with force sensor type included) via the `fanuc_force_sensor_broadcaster`.
+* `fanuc_force_sensor_broadcaster` will provide the service `/fanuc_force_sensor_broadcaster/cfg_force_sensor` to reset the force sensor and/or change the force sensor type.
+* Available force sensor types are defined as 1 for EMBEDDED force sensor, 2 for EXTERNAL force sensor, and 0 as Unselected. Force sensor type will be pre-configured based on the robot model when launching the driver. CRX robots will have the default force sensor type as EMBEDDED (1). Non-CRX robots will have the default force sensor type as Unselected (0). After launch, the force sensor type can be changed via the service, but an invalid force sensor type setting will be ignored by the robot controller.
+* `fanuc_force_sensor_broadcaster` will be automatically activated with both the moveit config launch and the forward command launch.
+
+```{note}
+* Robot resultant force/torque at the flange will also be published to the topic `/force_torque_sensor_broadcaster/wrench` via the standard `force_torque_sensor_broadcaster`.
+* `force_torque_sensor_broadcaster` will also be automatically activated with both the moveit config launch and the forward command launch.
 ```
 
 ## fanuc_controllers/fanuc_gpio_controller

@@ -53,33 +53,56 @@ This controller provides the ability to access controller data such as I/O, nume
 
 ### Published topics
 
-* `~/io_cmd [fanuc_msgs/msg/IOCmd]`: Synchronized bool I/O commands (e.g. `DO`, `RO`, `F`)
-* `~/io_state [fanuc_msgs/msg/IOState]`: Synchronized bool I/O states (e.g. `DO`, `DI`, `RO`, `RI`, `F`)
-* `~/analog_io_cmd [fanuc_msgs/msg/AnalogIOCmd]`: Synchronized analog I/O commands (e.g. `AO`)
-* `~/analog_io_state [fanuc_msgs/msg/AnalogIOState]`: Synchronized analog I/O states (e.g. `AO`, `AI`)
-* `~/num_reg_cmd [fanuc_msgs/msg/NumRegCmd]`: Synchronized numeric register commands
+* `~/io_state [fanuc_msgs/msg/IOState]`: Synchronized bool I/O states (e.g., `DO`, `DI`, `RO`, `RI`, `F`)
+* `~/analog_io_state [fanuc_msgs/msg/AnalogIOState]`: Synchronized analog I/O states (e.g., `AO`, `AI`)
 * `~/num_reg_state [fanuc_msgs/msg/NumRegState]`: Synchronized numeric register states
 * `~/connection_status [fanuc_msgs/msg/ConnectionStatus]`: Publishes whether the robot is connected or not. If this is `false`, no commands can be sent to the robot.
-* `~/robot_status [fanuc_msgs/msg/RabotStatus]`: Synchronized robot status (e.g. `in_error`, `tp_enabled`, `e_stopped`, `motion_possible`, `contact_stop_mode`). The `contact_stop_mode` publishes an integer with the following definitions (0: NONE (The robot is not in collaborative mode, or the safety sensor is disabled), 1: SAFE, 2: STOP, 3: DSBL, 4: ESCP).
-* `~/robot_status_ext [fanuc_msgs/msg/RobotStatusExt]`: Asynchronized robot status (e.g. `error_code`, `in_motion`, `drives_powered`, `gen_override`, `speed_clamp_limit`)
+* `~/robot_status [fanuc_msgs/msg/RobotStatus]`: Synchronized robot status (e.g., `in_error`, `tp_enabled`, `e_stopped`, `motion_possible`, `contact_stop_mode`). The `contact_stop_mode` publishes an integer with the following definitions (0: NONE (The robot is not in collaborative mode, or the safety sensor is disabled), 1: SAFE, 2: STOP, 3: DSBL, 4: ESCP).
+* `~/robot_status_ext [fanuc_msgs/msg/RobotStatusExt]`: Asynchronized robot status (e.g., `error_code`, `in_motion`, `drives_powered`, `gen_override`, `speed_clamp_limit`)
 * `~/collaborative_speed_scaling [fanuc_msgs/msg/CollaborativeSpeedScaling]`: Publishes the robot controller's collaborative speed clamping scaling value, either 0 or 1. For non-collaborative robots, this value is alawys 1. The same value will be automatically applied to the `scaled_joint_trajectory_controller` via the status interface to minimize path deviation. If you want to further define your own scaling, you can use the topic `/speed_scaling_factor`.
+
+### Subscribed topics
+
+* `~/io_cmd [fanuc_msgs/msg/IOCmd]`: Synchronized bool I/O commands (e.g., `DO`, `RO`, `F`)
+* `~/analog_io_cmd [fanuc_msgs/msg/AnalogIOCmd]`: Synchronized analog I/O commands (e.g., `AO`)
+* `~/num_reg_cmd [fanuc_msgs/msg/NumRegCmd]`: Synchronized numeric register commands
 
 ### Advertised services
 
-* `~/get_bool_io [fanuc_msgs/srv/GetBoolIO]`: Get asynchronized bool I/O (e.g. `DO`, `DI`, `RO`, `RI`, `F`)
-* `~/get_analog_io [fanuc_msgs/srv/GetAnalogIO]`: Get asynchronized analog I/O (e.g. `AO`, `AI`)
-* `~/get_group_io [fanuc_msgs/srv/GetGroupIO]`: Get asynchronized group I/O (e.g. `GO`, `GI`)
+* `~/get_bool_io [fanuc_msgs/srv/GetBoolIO]`: Get asynchronized bool I/O (e.g., `DO`, `DI`, `RO`, `RI`, `F`)
+* `~/get_analog_io [fanuc_msgs/srv/GetAnalogIO]`: Get asynchronized analog I/O (e.g., `AO`, `AI`)
+* `~/get_group_io [fanuc_msgs/srv/GetGroupIO]`: Get asynchronized group I/O (e.g., `GO`, `GI`)
 * `~/get_num_reg [fanuc_msgs/srv/GetNumReg]`: Get asynchronized numeric register
 * `~/get_pos_reg [fanuc_msgs/srv/GetPosReg]`: Get asynchronized position register
-* `~/set_bool_io [fanuc_msgs/srv/SetBoolIO]`: Set asynchronized bool I/O (e.g. `DO`, `RO`, `F`)
-* `~/set_analog_io [fanuc_msgs/srv/SetAnalogIO]`: Set asynchronized analog I/O (e.g. `AO`)
-* `~/set_group_io [fanuc_msgs/srv/SetGroupIO]`: Set asynchronized group I/O (e.g. `GO`)
+* `~/set_bool_io [fanuc_msgs/srv/SetBoolIO]`: Set asynchronized bool I/O (e.g., `DO`, `RO`, `F`)
+* `~/set_analog_io [fanuc_msgs/srv/SetAnalogIO]`: Set asynchronized analog I/O (e.g., `AO`)
+* `~/set_group_io [fanuc_msgs/srv/SetGroupIO]`: Set asynchronized group I/O (e.g., `GO`)
 * `~/set_num_reg [fanuc_msgs/srv/SetNumReg]`: Set asynchronized numeric register
 * `~/set_pos_reg [fanuc_msgs/srv/SetPosReg]`: Set asynchronized position register
 * `~/set_gen_override [fanuc_msgs/srv/SetGenOverride]`: Set robot GenOverride. This value needs to stay at 100 when the hardware interface is in active state.
 * `~/set_payload_id [fanuc_msgs/srv/SetPayloadID]`: Set the robot payload schedule number.
 * `~/set_payload_value [fanuc_msgs/srv/SetPayloadValue]`: Set the robot payload value.
 * `~/set_payload_comp [fanuc_msgs/srv/SetPayloadComp]`: Set the robot payload compensation.
+
+### Synchronized and Asynchronized I/O and numeric registers
+
+The fanuc_gpio_controller can read/write I/O and numeric registers in two ways.
+
+#### Synchronized I/O and numeric registers
+
+* The fanuc_gpio_controller can read and write I/O and numeric registers at the same rate as motion control via topics. This feature is suitable for real-time control.
+* The types and indices are configured in the gpio configuration file in advance. See [Configuring high-frequency I/O](#configuring-high-frequency-io) for details.
+
+```{note}
+When an I/O or numeric register is configured as the fanuc_driver's command, any other applications (TP program, fieldbus, etc.) cannot rewrite it because the fanuc_driver gets full control of it.
+
+```
+
+#### Asynchronized I/O and numeric registers
+
+* The fanuc_gpio_controller can read and write I/O and numeric registers via services.
+* You can select the I/O types and indices on demand without pre-configurations.
+* Reading and writing via services takes slightly longer than using synchronized interfaces.
 
 ### Getting and setting asynchronized position register
 
@@ -123,6 +146,8 @@ Robot controller software V9.40P/80 or later and ROS 2 driver v1.1.0 or later su
   * The service is used with non-collaborative robots.
   * The payload schedule does not match the current controller payload schedule (i.e., the payload compensation schedule).
   * Payload compensation is not fully enabled on the robot (please see the Operator's Manual (Collaborative Robot Function) for details on enabling payload compensation).
+
+(configuring-high-frequency-io)=
 
 ### Configuring high-frequency I/O
 

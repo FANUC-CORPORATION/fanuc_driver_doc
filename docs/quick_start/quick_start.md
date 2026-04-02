@@ -82,6 +82,7 @@ ros2 launch fanuc_crx_description view_crx.launch.py robot_model:=crx10ia
 
 `fanuc_moveit_config` is an example MoveIt configuration package which supports the following robot models.
 
+- CRX-3iA
 - CRX-5iA
 - CRX-10iA
 - CRX-10iA/L
@@ -208,6 +209,21 @@ After defining your port, you now need to configure that port using the Host Com
 
 ![Configure robot's static IP.](/_static/images/Host_Comm.png "Configuring the robot's static IP address")
 
+### Robot Controller Status
+
+Confirm that the following conditions are met.
+
+- The operation mode is `AUTO`.
+- All alarms are removed.
+- The teach pendant is disabled (OFF).
+  - Teach Pendant
+    - ![Teach Pendant is OFF](/_static/images/tp_switch_image.jpg)
+  - Tablet TP
+    - Correct (OFF)
+      - ![Tablet TP is OFF](/_static/images/tablet_off.png)
+    - Wrong (ON)
+      - ![Tablet TP is ON](/_static/images/tablet_on.png)
+
 ### Launching CRX-10iA with Driver
 
 ```bash
@@ -219,7 +235,8 @@ ros2 launch fanuc_moveit_config fanuc_moveit.launch.py robot_model:=crx10ia robo
 You can command motion using the same IMarker workflow used earlier.
 
 ```{note}
-See [Controller Usage](/docs/fanuc_driver/controller_usage/) to learn more about the available controllers.
+* The robot controller may raise the alarm `RMIT-016 Please Cycle Power.` on the first connection. In this case, repower the robot controller and the fanuc_driver so that the robot controller can automatically disable the Hot start for Remote Motion.
+* See [Controller Usage](/docs/fanuc_driver/controller_usage/) to learn more about the available controllers.
 ```
 
 ### Setting I/O Values

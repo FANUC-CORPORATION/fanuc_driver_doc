@@ -11,6 +11,7 @@
 
 | R-30iB Plus name | R-50iA name | URDF name |
 | --- | --- | --- |
+| CRX-3iA | N/A | crx3ia |
 | CRX-5iA | N/A | crx5ia |
 | CRX-10iA | N/A | crx10ia |
 | CRX-10iA/L | N/A | crx10ia_l |

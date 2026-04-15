@@ -83,7 +83,7 @@ html_static_path = ["_static"]
 smv_tag_whitelist = r"^v\d+\.\d+\.\d+$"  # Semantic versioning
 
 # Whitelist pattern for branches you want to build documentation for
-smv_branch_whitelist = r"^main$"
+smv_branch_whitelist = r"^(main|humble)$"
 
 # Whitelist pattern for remotes you want to build documentation for
 smv_remote_whitelist = r"^origin$"
@@ -96,7 +96,7 @@ html_context = {
     "display_github": True,
     "github_user": "FANUC-CORPORATION",
     "github_repo": "fanuc_driver_doc",
-    "github_version": "main/",
+    "github_version": "main",
     "conf_py_path": "/",
     "source_suffix": source_suffix,
 }
@@ -110,3 +110,16 @@ html_css_files = ["css/custom.css"]
 
 def setup(app):
     app.add_css_file("css/custom.css")
+    app.connect("html-page-context", update_edit_on_github_link, priority=999)
+
+
+def update_edit_on_github_link(app, pagename, templatename, context, doctree):
+    """
+    Dynamically update the "Edit on GitHub" link based on the
+    branch sphinx-multiversion is currently building.
+    """
+    if "current_version" in context:
+        # Extract the value safely
+        cv = context["current_version"]
+        branch = cv if isinstance(cv, str) else getattr(cv, "name", str(cv))
+        context["github_version"] = branch

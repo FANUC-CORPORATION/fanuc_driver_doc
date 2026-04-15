@@ -1,5 +1,5 @@
-<!-- SPDX-FileCopyrightText: 2025 FANUC America Corp.
-     SPDX-FileCopyrightText: 2025 FANUC CORPORATION
+<!-- SPDX-FileCopyrightText: 2025-2026 FANUC America Corp.
+     SPDX-FileCopyrightText: 2025-2026 FANUC CORPORATION
 
      SPDX-License-Identifier: Apache-2.0
 -->
@@ -50,7 +50,7 @@ echo "Checking out GitHub repositories"
 mkdir ~/ws_fanuc/src -p
 cd ~/ws_fanuc/src
 git clone https://github.com/FANUC-CORPORATION/fanuc_description.git
-git clone --recurse-submodules https://github.com/FANUC-CORPORATION/fanuc_driver.git
+git clone --branch humble --single-branch --recurse-submodules https://github.com/FANUC-CORPORATION/fanuc_driver.git
 
 echo "Installing FANUC dependencies"
 cd ~/ws_fanuc

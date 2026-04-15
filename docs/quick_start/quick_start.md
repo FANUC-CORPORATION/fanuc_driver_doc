@@ -1,5 +1,5 @@
-<!-- SPDX-FileCopyrightText: 2025 FANUC America Corp.
-     SPDX-FileCopyrightText: 2025 FANUC CORPORATION
+<!-- SPDX-FileCopyrightText: 2025-2026 FANUC America Corp.
+     SPDX-FileCopyrightText: 2025-2026 FANUC CORPORATION
 
      SPDX-License-Identifier: Apache-2.0
 -->
@@ -23,11 +23,11 @@ See [the system requirements page](../environment/system_requirements.md).
 
 ### Set up the ROS 2 Environment
 
-Follow the official [ROS 2 Installation Guide](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html) for the Desktop Install of ROS 2 Humble.
+Follow the official [ROS 2 Installation Guide](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debians.html) for the Desktop Install of ROS 2 Jazzy.
 
 ### Configure the ROS 2 Environment
 
-We recommend performing the following tasks in the [ROS 2 Configuring Environment](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Configuring-ROS2-Environment.html):
+We recommend performing the following tasks in the [ROS 2 Configuring Environment](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Configuring-ROS2-Environment.html):
 
 - Add sourcing to your shell startup script
 - The ROS_LOCALHOST_ONLY variable
@@ -50,7 +50,7 @@ echo "Checking out GitHub repositories"
 mkdir ~/ws_fanuc/src -p
 cd ~/ws_fanuc/src
 git clone https://github.com/FANUC-CORPORATION/fanuc_description.git
-git clone --recurse-submodules https://github.com/FANUC-CORPORATION/fanuc_driver.git
+git clone --branch main --single-branch --recurse-submodules https://github.com/FANUC-CORPORATION/fanuc_driver.git
 
 echo "Installing FANUC dependencies"
 cd ~/ws_fanuc
@@ -71,7 +71,7 @@ Debian packages will be provided at a future date.
 The `view_crx` launch file visualizes a URDF model in RViz and provides slider bars to visualize a specific joint state.
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 source ~/ws_fanuc/install/setup.bash
 ros2 launch fanuc_crx_description view_crx.launch.py robot_model:=crx10ia
 ```
@@ -97,7 +97,7 @@ When you want to use other models, create your MoveIt configuration package foll
 The `fanuc_moveit` launch file starts ROS processes to control a URDF model using ros2_control and MoveIt2.
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 source ~/ws_fanuc/install/setup.bash
 ros2 launch fanuc_moveit_config fanuc_moveit.launch.py robot_model:=crx10ia use_mock:=true
 ```
@@ -162,7 +162,7 @@ Confirm that the required robot controller software is installed
 
 Accurately setting your robot's payload is important.
 
-#### Prior to `ROS 2 driver v1.1.0` and `controller software V9.40P/84`
+#### Prior to `ROS 2 driver v2.0.0` and `controller software V9.40P/84`
 
 Changing payload requires the client to execute the following steps:
 
@@ -172,7 +172,7 @@ Changing payload requires the client to execute the following steps:
 4. Reactivate the hardware interface.
 5. Resume your application.
 
-#### Later than `ROS 2 driver v1.1.0` and `controller software V9.40P/84`
+#### Later than `ROS 2 driver v2.0.0` and `controller software V9.40P/84`
 
 You can use ROS 2 service to change payload value or payload compensation on the fly. See [Setting payload value and payload compensation](/docs/fanuc_driver/controller_usage.md#setting-payload-value-and-payload-compensation).
 
@@ -227,7 +227,7 @@ Confirm that the following conditions are met.
 ### Launching CRX-10iA with Driver
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 source ~/ws_fanuc/install/setup.bash
 ros2 launch fanuc_moveit_config fanuc_moveit.launch.py robot_model:=crx10ia robot_ip:="192.168.1.100"
 ```

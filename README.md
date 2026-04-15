@@ -55,13 +55,20 @@ Before you get started, make sure you have:
    pipenv install
    ```
 
-4. Activate the virtual environment
+4. If your environment is using a version of Python higher than `3.10`, you can specify the target
+   version as shown in the following example:
+
+     ```bash
+     pipenv --python 3.12 install
+     ```
+
+5. Activate the virtual environment
 
    ```bash
    pipenv shell
    ```
 
-5. Install pre-commit hooks
+6. Install pre-commit hooks
 
    ```bash
    pre-commit install

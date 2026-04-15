@@ -1,5 +1,5 @@
-<!-- SPDX-FileCopyrightText: 2025 FANUC America Corp.
-     SPDX-FileCopyrightText: 2025 FANUC CORPORATION
+<!-- SPDX-FileCopyrightText: 2025-2026 FANUC America Corp.
+     SPDX-FileCopyrightText: 2025-2026 FANUC CORPORATION
 
      SPDX-License-Identifier: Apache-2.0
 -->
@@ -35,7 +35,7 @@ This controller is a variation of the standard joint_trajectory_controller, whic
 
 ## fanuc_controllers/fanuc_force_sensor_broadcaster
 
-This controller publishes the robot resultant force/torque at the flange and the force sensor type. This controller is available with robot controller software V9.40P/85 or later and ROS 2 driver v1.1.1.
+This controller publishes the robot resultant force/torque at the flange and the force sensor type. This controller is available with robot controller software V9.40P/85 or later and ROS 2 driver v2.0.0.
 
 * Robot resultant force/torque at the flange will be published to the topic `/fanuc_force_sensor_broadcaster/force_sensor` (with force sensor type included) via the `fanuc_force_sensor_broadcaster`.
 * `fanuc_force_sensor_broadcaster` will provide the service `/fanuc_force_sensor_broadcaster/cfg_force_sensor` to reset the force sensor and/or change the force sensor type.
@@ -106,7 +106,7 @@ When an I/O or numeric register is configured as the fanuc_driver's command, any
 
 ### Getting and setting asynchronized position register
 
-Robot controller software V9.40P/80 or later and ROS 2 driver v1.1.0 or later support getting and setting asynchronized position register via ROS 2 services.
+Robot controller software V9.40P/80 or later and ROS 2 driver v2.0.0 or later support getting and setting asynchronized position register via ROS 2 services.
 
 #### Getting asynchronized position register [fanuc_gpio_controller/get_pos_reg]
 
@@ -121,7 +121,7 @@ Robot controller software V9.40P/80 or later and ROS 2 driver v1.1.0 or later su
 
 ### Setting payload value and payload compensation
 
-Robot controller software V9.40P/80 or later and ROS 2 driver v1.1.0 or later support setting payload value and payload compensation on the fly via ROS 2 services.
+Robot controller software V9.40P/80 or later and ROS 2 driver v2.0.0 or later support setting payload value and payload compensation on the fly via ROS 2 services.
 
 #### Setting payload value [fanuc_gpio_controller/set_payload_value]
 

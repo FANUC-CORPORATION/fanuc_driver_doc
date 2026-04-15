@@ -1,5 +1,5 @@
-<!-- SPDX-FileCopyrightText: 2025 FANUC America Corp.
-     SPDX-FileCopyrightText: 2025 FANUC CORPORATION
+<!-- SPDX-FileCopyrightText: 2025-2026 FANUC America Corp.
+     SPDX-FileCopyrightText: 2025-2026 FANUC CORPORATION
 
      SPDX-License-Identifier: Apache-2.0
 -->
@@ -10,7 +10,7 @@
 
 The current GPIO controller comes with a set of GPIOs enabled by default. These
 configurations can be found in
-[example_gpio_config.yaml](https://github.com/FANUC-CORPORATION/fanuc_driver/blob/main/fanuc_hardware_interface/config/example_gpio_config.yaml)
+[example_gpio_config.yaml](https://github.com/FANUC-CORPORATION/fanuc_driver/blob/humble/fanuc_hardware_interface/config/example_gpio_config.yaml)
 
 This config file contains four main sections,
 
@@ -23,7 +23,7 @@ listed items under each of these sections can be modified/remove/added to
 update the configuration of GPIO controller.
 
 upon inspecting part of the
-[example_gpio_config.yaml](https://github.com/FANUC-CORPORATION/fanuc_driver/blob/main/fanuc_hardware_interface/config/example_gpio_config.yaml)
+[example_gpio_config.yaml](https://github.com/FANUC-CORPORATION/fanuc_driver/blob/humble/fanuc_hardware_interface/config/example_gpio_config.yaml)
 we can see
 
 ```yaml
@@ -83,8 +83,8 @@ ros2 interface show fanuc_msgs/srv/GetBoolIO
 which returns
 
 ```text
-# SPDX-FileCopyrightText: 2025, FANUC America Corporation
-# SPDX-FileCopyrightText: 2025, FANUC CORPORATION
+# SPDX-FileCopyrightText: 2025-2026, FANUC America Corporation
+# SPDX-FileCopyrightText: 2025-2026, FANUC CORPORATION
 #
 # SPDX-License-Identifier: Apache-2.0
 

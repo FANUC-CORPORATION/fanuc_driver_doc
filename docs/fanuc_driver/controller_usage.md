@@ -1,5 +1,5 @@
-<!-- SPDX-FileCopyrightText: 2025 FANUC America Corp.
-     SPDX-FileCopyrightText: 2025 FANUC CORPORATION
+<!-- SPDX-FileCopyrightText: 2025-2026 FANUC America Corp.
+     SPDX-FileCopyrightText: 2025-2026 FANUC CORPORATION
 
      SPDX-License-Identifier: Apache-2.0
 -->

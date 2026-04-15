@@ -1,5 +1,5 @@
-<!-- SPDX-FileCopyrightText: 2025 FANUC America Corp.
-     SPDX-FileCopyrightText: 2025 FANUC CORPORATION
+<!-- SPDX-FileCopyrightText: 2025-2026 FANUC America Corp.
+     SPDX-FileCopyrightText: 2025-2026 FANUC CORPORATION
 
      SPDX-License-Identifier: Apache-2.0
 -->
@@ -7,13 +7,22 @@
 
 # System Requirements
 
-## Operating System
+```{note}
+This documentation is intended for ROS 2 Humble Hawksbill.
+If you are using a different ROS 2 distribution, select the appropriate branch from the branch selector in the lower-left corner.
+```
 
-Ubuntu 22.04 LTS (optionally with real-time PREEMPT_RT kernel installed)
+## Operating System and ROS 2 Distribution
 
-## ROS 2 Distribution
+The FANUC ROS 2 Driver supports the following combinations of operating system
+and ROS 2 distribution:
 
-Humble Hawksbill
+- Ubuntu 22.04 LTS / ROS 2 Humble Hawksbill
+- Ubuntu 24.04 LTS / ROS 2 Jazzy Jalisco
+
+```{note}
+A real-time PREEMPT_RT kernel may be optionally installed, depending on application requirements.
+```
 
 ## FANUC Robot Controller
 

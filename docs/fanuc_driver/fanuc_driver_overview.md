@@ -1,5 +1,5 @@
-<!-- SPDX-FileCopyrightText: 2025 FANUC America Corp.
-     SPDX-FileCopyrightText: 2025 FANUC CORPORATION
+<!-- SPDX-FileCopyrightText: 2025-2026 FANUC America Corp.
+     SPDX-FileCopyrightText: 2025-2026 FANUC CORPORATION
 
      SPDX-License-Identifier: Apache-2.0
 -->
@@ -22,7 +22,7 @@ This repository contains the FANUC hardware interface implementation, FANUC ros2
 
 ## Feature List
 
-### Starting with `ROS 2 driver v1.0.0` and `controller software V9.40P/77, V10.10P/26`
+### Starting with `ROS 2 driver v2.0.0` and `controller software V9.40P/77, V10.10P/26`
 
 - Scaled joint trajectory controller.
 - Automatic handling of missed command packets.
@@ -32,13 +32,13 @@ This repository contains the FANUC hardware interface implementation, FANUC ros2
 - Getting robot status.
 - Setting payload schedule.
 
-### Starting with `ROS 2 driver v1.1.0` and `controller software V9.40P/84, V10.10P/28`
+### Starting with `ROS 2 driver v2.0.0` and `controller software V9.40P/84, V10.10P/28`
 
 - Automatic speed clamping if command exceeds collaborative speed limit of the robot.
 - Forward position controller.
 - Getting and setting position registers.
 - Setting payload value and payload compensation.
 
-### Starting with `ROS 2 driver v1.1.1` and `controller software V9.40P/85`
+### Starting with `ROS 2 driver v2.0.0` and `controller software V9.40P/85`
 
 - Force sensor broadcaster

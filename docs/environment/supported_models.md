@@ -104,6 +104,14 @@
 | R-2000iD/100FH | R-2000/100F-26D Hollow | r2000id_100fh |
 | R-2000iD/165FH | R-2000/165F-26D Hollow | r2000id_165fh |
 | R-2000iD/210FH | R-2000/210F-26D Hollow | r2000id_210fh |
+| N/A | R-2000/180F-27E | r2000_180f-27e |
+| N/A | R-2000/225F-27E | r2000_225f-27e |
+| N/A | R-2000/125F-31E | r2000_125f-31e |
+| N/A | R-2000/300F-27E | r2000_300f-27e |
+| N/A | R-2000/210F-31E | r2000_210f-31e |
+| N/A | R-2000/210R-31E | r2000_210r-31e |
+| N/A | R-2000/270R-31E | r2000_270r-31e |
+| N/A | R-2000/120R-39E | r2000_120r-39e |
 
 ## Paint series in fanuc_paint_description
 

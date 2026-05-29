@@ -35,7 +35,7 @@ This controller is a variation of the standard joint_trajectory_controller, whic
 
 ## fanuc_controllers/fanuc_force_sensor_broadcaster
 
-This controller publishes the robot resultant force/torque at the flange and the force sensor type. This controller is available with robot controller software V9.40P/85 or later and ROS 2 driver v1.1.1.
+This controller publishes the robot resultant force/torque at the flange and the force sensor type. This controller is available with robot controller software V9.40P/85 or later and ROS 2 driver v1.2.0.
 
 * Robot resultant force/torque at the flange will be published to the topic `/fanuc_force_sensor_broadcaster/force_sensor` (with force sensor type included) via the `fanuc_force_sensor_broadcaster`.
 * `fanuc_force_sensor_broadcaster` will provide the service `/fanuc_force_sensor_broadcaster/cfg_force_sensor` to reset the force sensor and/or change the force sensor type.
@@ -83,6 +83,7 @@ This controller provides the ability to access controller data such as I/O, nume
 * `~/set_payload_id [fanuc_msgs/srv/SetPayloadID]`: Set the robot payload schedule number.
 * `~/set_payload_value [fanuc_msgs/srv/SetPayloadValue]`: Set the robot payload value.
 * `~/set_payload_comp [fanuc_msgs/srv/SetPayloadComp]`: Set the robot payload compensation.
+* `~/switch_control_state [fanuc_msgs/srv/SwitchControlState]`: Start/Stop motion control. Refer to [Motion Control Authority](/docs/fanuc_driver/motion_control_authority.md) for details.
 
 ### Synchronized and Asynchronized I/O and numeric registers
 

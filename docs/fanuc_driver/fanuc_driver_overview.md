@@ -42,3 +42,8 @@ This repository contains the FANUC hardware interface implementation, FANUC ros2
 ### Starting with `ROS 2 driver v2.0.0` and `controller software V9.40P/85`
 
 - Force sensor broadcaster
+
+### Starting with `ROS 2 driver v2.1.0`
+
+- Alarm Recovery.
+- Switching motion control between ros2_control and the robot controller.

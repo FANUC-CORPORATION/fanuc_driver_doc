@@ -83,6 +83,7 @@ This controller provides the ability to access controller data such as I/O, nume
 * `~/set_payload_id [fanuc_msgs/srv/SetPayloadID]`: Set the robot payload schedule number.
 * `~/set_payload_value [fanuc_msgs/srv/SetPayloadValue]`: Set the robot payload value.
 * `~/set_payload_comp [fanuc_msgs/srv/SetPayloadComp]`: Set the robot payload compensation.
+* `~/switch_control_state [fanuc_msgs/srv/SwitchControlState]`: Start/Stop motion control. Refer to [Motion Control Authority](/docs/fanuc_driver/motion_control_authority.md) for details.
 
 ### Synchronized and Asynchronized I/O and numeric registers
 

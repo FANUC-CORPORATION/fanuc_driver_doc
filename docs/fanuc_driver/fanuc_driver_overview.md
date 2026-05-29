@@ -39,6 +39,11 @@ This repository contains the FANUC hardware interface implementation, FANUC ros2
 - Getting and setting position registers.
 - Setting payload value and payload compensation.
 
-### Starting with `ROS 2 driver v1.1.1` and `controller software V9.40P/85`
+### Starting with `ROS 2 driver v1.2.0` and `controller software V9.40P/85`
 
 - Force sensor broadcaster
+
+### Starting with `ROS 2 driver v1.3.0`
+
+- Alarm Recovery.
+- Switching motion control between ros2_control and the robot controller.

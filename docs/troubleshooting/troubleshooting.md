@@ -74,7 +74,7 @@ The following shows the screen for the Auto Status Check timeout.
 ### I cannot command motion after accessing the teach pendant or E-stop
 
 When running external motion commands through the ROS 2 controller interface, the external motion will stop as soon as there is a servo fault on the controller, triggered by such things as turning on the teach pendant or performing an E-stop.
-Afterwards, the ROS driver will not be able to send commands to the robot again until the controller's fault is cleared and the ROS driver’s program has been restarted.
+Afterwards, the ROS driver will not be able to send commands to the robot again until the controller's fault is cleared and the ROS driver regains motion control. Refer to [Alarm Recovery](/docs/fanuc_driver/motion_control_authority.md#alarm-recovery) for details.
 
 ### I get occasional robot motion faults
 

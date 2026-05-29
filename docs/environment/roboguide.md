@@ -39,7 +39,19 @@ Set WSL2's `networkingMode` to `Mirrored` instead of `NAT`, otherwise, UDP packe
 
 The CRX series uses `example_gpio_config.yaml`, which assigns DI/DO[101-112]. ROBOGUIDE's default DI/DO assignment splits the DI/DO indices, causing the GPIO configuration packet to fail.
 
-Please perform the following procedure to avoid this failure:
+Please perform one of the following procedures to avoid this failure:
+
+### Using `fanuc_gpio_config_small.yaml`
+
+You can avoid the failure by using a smaller gpio configuration file.
+
+```bash
+ros2 launch fanuc_moveit_config fanuc_moveit.launch.py gpio_config_path:=config/example_gpio_config_small.yaml
+```
+
+### Using `fanuc_gpio_config.yaml`
+
+If you want to keep using the default one, configure the virtual robot controller's DI/DO.
 
 1. Display the DO screen from the I/O screen.
 ![How to open the DO screen](/_static/images/roboguide_dio_01.png)

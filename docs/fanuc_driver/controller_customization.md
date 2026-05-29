@@ -51,7 +51,7 @@ IO types which are not listed in the config file would still be available under
 ### Passing a Custom Config File
 
 A separate gpio configuration file could also be passed during launch by appending
-`gpio_configuration:=/path/to/new/config/file` to your default ros2 launch command
+`gpio_config_package:=package_name gpio_config_path:=path/to/new/config/file/in/package` to your default ros2 launch command
 
 ## Using CLI to Monitor/Switch GPIO
 

@@ -30,11 +30,11 @@
 | LR Mate 200iD/7WE | LR Mate/7-7D Wash | lrmate200id7we |
 | LR Mate 200iD/4S | LR Mate/4-6D | lrmate200id4s |
 | ER-4iA | LR Mate/4-6D Entry | er4ia |
-| LR-10iA/10 | LR Mate/10-11A | lrmate10-11a |
-| N/A | LR Mate/10-11A Food/Clean | lrmate10-11afc |
-| M-20iB/25 | LR Mate/25-19A | lrmate25-19a |
-| M-20iB/25C | LR Mate/25-19A Food/Clean | lrmate25-19afc |
-| M-20iB/35S | LR Mate/35-14A | lrmate35-14a |
+| LR-10iA/10 | LR Mate/10-11A | lrmate10_11a |
+| N/A | LR Mate/10-11A Food/Clean | lrmate10_11afc |
+| M-20iB/25 | LR Mate/25-19A | lrmate25_19a |
+| M-20iB/25C | LR Mate/25-19A Food/Clean | lrmate25_19afc |
+| M-20iB/35S | LR Mate/35-14A | lrmate35_14a |
 
 ## R-1000 series in fanuc_m1000ia_description
 
@@ -48,18 +48,18 @@
 
 | R-30iB Plus name | R-50iA name | URDF name |
 | --- | --- | --- |
-| M-10iD/12 | M-10/12-14D | m10_12-14d |
-| M-10iD/10L | M-10/10-16D | m10_10-16d |
-| M-10iD/16S | M-10/16-11D | m10_16-11d |
-| M-10iD/8L | M-10/8-20D | m10_8-20d |
+| M-10iD/12 | M-10/12-14D | m10_12_14d |
+| M-10iD/10L | M-10/10-16D | m10_10_16d |
+| M-10iD/16S | M-10/16-11D | m10_16_11d |
+| M-10iD/8L | M-10/8-20D | m10_8_20d |
 
 ## M-20 series in fanuc_m20_description
 
 | R-30iB Plus name | R-50iA name | URDF name |
 | --- | --- | --- |
-| M-20iD/25 | M-20/25-18D | m20_25-18d |
-| M-20iD/35 | M-20/35-18D | m20_35-18d |
-| M-20iD/12L | M-20/12-23D | m20_12-23d |
+| M-20iD/25 | M-20/25-18D | m20_25_18d |
+| M-20iD/35 | M-20/35-18D | m20_35_18d |
+| M-20iD/12L | M-20/12-23D | m20_12_23d |
 
 ## M-710 series in fanuc_m710_description
 
@@ -104,14 +104,14 @@
 | R-2000iD/100FH | R-2000/100F-26D Hollow | r2000id_100fh |
 | R-2000iD/165FH | R-2000/165F-26D Hollow | r2000id_165fh |
 | R-2000iD/210FH | R-2000/210F-26D Hollow | r2000id_210fh |
-| N/A | R-2000/180F-27E | r2000_180f-27e |
-| N/A | R-2000/225F-27E | r2000_225f-27e |
-| N/A | R-2000/125F-31E | r2000_125f-31e |
-| N/A | R-2000/300F-27E | r2000_300f-27e |
-| N/A | R-2000/210F-31E | r2000_210f-31e |
-| N/A | R-2000/210R-31E | r2000_210r-31e |
-| N/A | R-2000/270R-31E | r2000_270r-31e |
-| N/A | R-2000/120R-39E | r2000_120r-39e |
+| N/A | R-2000/180F-27E | r2000_180f_27e |
+| N/A | R-2000/225F-27E | r2000_225f_27e |
+| N/A | R-2000/125F-31E | r2000_125f_31e |
+| N/A | R-2000/300F-27E | r2000_300f_27e |
+| N/A | R-2000/210F-31E | r2000_210f_31e |
+| N/A | R-2000/210R-31E | r2000_210r_31e |
+| N/A | R-2000/270R-31E | r2000_270r_31e |
+| N/A | R-2000/120R-39E | r2000_120r_39e |
 
 ## Paint series in fanuc_paint_description
 

@@ -60,6 +60,7 @@ Users can monitor or set an IO through command line interface using the provided
 After launching your ros2 launch, the list of available services can be listed by
 
 ```bash
+source ~/fanuc_driver_workspace/install/setup.bash
 ros2 service list
 ```
 

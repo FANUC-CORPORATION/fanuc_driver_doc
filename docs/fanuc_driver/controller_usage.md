@@ -69,7 +69,7 @@ This controller provides the ability to access controller data such as I/O, nume
 
 ### Advertised services
 
-* `~/get_bool_io [fanuc_msgs/srv/GetBoolIO]`: Get asynchronized bool I/O (e.g., `DO`, `DI`, `RO`, `RI`, `F`)
+* `~/get_bool_io [fanuc_msgs/srv/GetBoolIO]`: Get asynchronized bool I/O (e.g., `DO`, `DI`, `RO`, `RI`, `F`, `UI`, `UO`)
 * `~/get_analog_io [fanuc_msgs/srv/GetAnalogIO]`: Get asynchronized analog I/O (e.g., `AO`, `AI`)
 * `~/get_group_io [fanuc_msgs/srv/GetGroupIO]`: Get asynchronized group I/O (e.g., `GO`, `GI`)
 * `~/get_num_reg [fanuc_msgs/srv/GetNumReg]`: Get asynchronized numeric register

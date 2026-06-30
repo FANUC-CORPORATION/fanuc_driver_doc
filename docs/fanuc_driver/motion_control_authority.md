@@ -43,7 +43,7 @@ You can select the desired initial state of `motion_possible` using a launch arg
 
 By default, `motion_control` is set to 1 and the ROS driver tries to get motion control. If this attempt fails, the driver will not start.
 
-When `motion_control` is set to 0, the ROS driver can start even if the robot controller has alarms because it does not require motion control. The fanuc_drier can get motion control later by calling the `~/switch_control_state` service.
+When `motion_control` is set to 0, the ROS driver can start even if the robot controller has alarms because it does not require motion control. The fanuc_driver can get motion control later by calling the `~/switch_control_state` service.
 
 ```bash
 ros2 launch fanuc_moveit_config fanuc_moveit.launch.py robot_ip:=192.168.10.101 robot_model:=crx10ia_l motion_control:=0

@@ -11,10 +11,10 @@
 
 | R-30iB Plus name | R-50iA name | URDF name |
 | --- | --- | --- |
-| CRX-3iA | N/A | crx3ia |
-| CRX-5iA | N/A | crx5ia |
-| CRX-10iA | N/A | crx10ia |
-| CRX-10iA/L | N/A | crx10ia_l |
+| CRX-3iA | CRX/3-7A | crx3ia |
+| CRX-5iA | CRX/5-10A | crx5ia |
+| CRX-10iA | CRX/10-12A | crx10ia |
+| CRX-10iA/L | CRX/10-14A | crx10ia_l |
 | CRX-10iA/L Paint | N/A | crx10ia_lp |
 | CRX-20iA/L | CRX/20-14A | crx20ia_l |
 | CRX-30iA (CRX-25iA) | CRX/30-18A | crx30ia |
@@ -82,6 +82,13 @@
 | --- | --- | --- |
 | M-800iB/60 | M-800/60-20B | m800_60_20b |
 
+## M-810 series in fanuc_m810_description
+
+| R-30iB Plus name | R-50iA name | URDF name |
+| --- | --- | --- |
+| N/A | M-810/190-20B | m810_190_20b |
+| N/A | M-810/270-27B | m810_270_27b |
+
 ## R-2000 series in fanuc_r2000_description
 
 | R-30iB Plus name | R-50iA name | URDF name |
@@ -121,4 +128,14 @@
 
 ```{note}
 Paint robots support Right hand and Left hand coordinate systems. Choose the URDF model corresponding your configuration to obtain correct axis directions.
+```
+
+## CR series in fanuc_cr_description
+
+| R-30iB Plus name | R-50iA name | URDF name |
+| --- | --- | --- |
+| CR-35iB | N/A | cr_50f_16b |
+
+```{note}
+The CR series robots require very smooth motion commands to prevent unintended contact stop. We recommend using `fanuc_rmi_controller` because generating such motion on the ROS side is challenging.
 ```

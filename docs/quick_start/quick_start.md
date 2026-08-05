@@ -23,7 +23,7 @@ See [the system requirements page](../environment/system_requirements.md).
 
 ### Set up the ROS 2 Environment
 
-Follow the official [ROS 2 Installation Guide](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html) for the Desktop Install of ROS 2 Humble.
+Follow the official [ROS 2 Installation Guide](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html) for the Desktop Install of ROS 2 Humble.
 
 ### Configure the ROS 2 Environment
 

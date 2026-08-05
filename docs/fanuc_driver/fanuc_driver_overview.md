@@ -19,6 +19,7 @@ This repository contains the FANUC hardware interface implementation, FANUC ros2
 | fanuc_msgs | Provides the messages and services supported on FANUC controllers. |
 | fanuc_moveit_config | MoveIt Configuration for a FANUC robot. |
 | slider_publisher | Provides scaling input to the Scaled Joint Trajectory controller. |
+| rmi_msgs | Provides the messages and services supported on fanuc_rmi_controller. |
 
 ## Feature List
 
@@ -39,7 +40,7 @@ This repository contains the FANUC hardware interface implementation, FANUC ros2
 - Getting and setting position registers.
 - Setting payload value and payload compensation.
 
-### Starting with `ROS 2 driver v1.2.0` and `controller software V9.40P/85, V10.10P32`
+### Starting with `ROS 2 driver v1.2.0` and `controller software V9.40P/85, V10.10P/32`
 
 - Force sensor broadcaster
 
@@ -52,6 +53,10 @@ This repository contains the FANUC hardware interface implementation, FANUC ros2
 
 - Operating the robot in group 1 of the multi-group control system.
 
-### Starting with `ROS 2 driver v1.4.0` and `controller software V9.40P/89`
+### Starting with `ROS 2 driver v1.4.0` and `controller software V9.40P/89, V10.10P/33`
 
 - Getting UI and UO through the `/get_bool_io` service.
+
+### Starting with `ROS 2 driver v1.5.0`
+
+- FANUC RMI controller

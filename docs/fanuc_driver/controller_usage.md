@@ -4,6 +4,7 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <!-- markdownlint-disable MD013 -->
+<!-- markdownlint-configure-file { "MD024": { "siblings_only": true } } -->
 # Controller Usage
 
 Currently supported FANUC-specific controllers include:
@@ -11,6 +12,7 @@ Currently supported FANUC-specific controllers include:
 * **scaled_joint_trajectory_controller**:  a variation of the standard joint_trajectory_controller, which allows the speed to be scaled up or down between 0% and 100%.
 * **fanuc_force_sensor_broadcaster**:  publishes the robot resultant force/torque at the flange and the force sensor type.
 * **fanuc_gpio_controller**:  provides the ability to access controller data such as I/O, numeric registers, position registers, robot status, and payload.
+* **fanuc_rmi_controller**: provides the ability to control the robot with FANUC robot controller's built-in motion instructions such as L (Linear), J (Joint), C (Circular) and S (Spline).
 
 ## fanuc_controllers/scaled_joint_trajectory_controller
 
@@ -60,6 +62,13 @@ This controller provides the ability to access controller data such as I/O, nume
 * `~/robot_status [fanuc_msgs/msg/RobotStatus]`: Synchronized robot status (e.g., `in_error`, `tp_enabled`, `e_stopped`, `motion_possible`, `contact_stop_mode`). The `contact_stop_mode` publishes an integer with the following definitions (0: NONE (The robot is not in collaborative mode, or the safety sensor is disabled), 1: SAFE, 2: STOP, 3: DSBL, 4: ESCP).
 * `~/robot_status_ext [fanuc_msgs/msg/RobotStatusExt]`: Asynchronized robot status (e.g., `error_code`, `in_motion`, `drives_powered`, `gen_override`, `speed_clamp_limit`)
 * `~/collaborative_speed_scaling [fanuc_msgs/msg/CollaborativeSpeedScaling]`: Publishes the robot controller's collaborative speed clamping scaling value, either 0 or 1. For non-collaborative robots, this value is alawys 1. The same value will be automatically applied to the `scaled_joint_trajectory_controller` via the status interface to minimize path deviation. If you want to further define your own scaling, you can use the topic `/speed_scaling_factor`.
+* `~/rmi_status [fanuc_msgs/msg/RMIStatus]`: RMI's execution status
+  * `program_status`: RMI_MOVE TP program's current status (0: Running, 1: Paused, 2: Aborted)
+  * `next_sequence`: The next valid sequence ID
+  * `last_sequence`: The sequence ID which the latest instruction return packet had. This message also has the following corresponding values when its value is not zero.
+    * `last_sequence_error`: The error id in the latest returned packet
+    * `last_sequence_instruction`: The instruction type of the latest returned packet
+    * `last_sequence_error_message`: The error message string for the `last_sequence_error`
 
 ### Subscribed topics
 
@@ -84,6 +93,16 @@ This controller provides the ability to access controller data such as I/O, nume
 * `~/set_payload_value [fanuc_msgs/srv/SetPayloadValue]`: Set the robot payload value.
 * `~/set_payload_comp [fanuc_msgs/srv/SetPayloadComp]`: Set the robot payload compensation.
 * `~/switch_control_state [fanuc_msgs/srv/SwitchControlState]`: Start/Stop motion control. Refer to [Motion Control Authority](/docs/fanuc_driver/motion_control_authority.md) for details.
+* `~/read_error [fanuc_msgs/srv/ReadError]`: Get up to 5 active error messages on the robot controller. When `count` is not set, this service returns the latest one error message.
+* `~/get_uframe_utool [fanuc_msgs/srv/GetUFrameUTool]`: Get the current user frame number and the tool frame number.
+* `~/set_uframe_utool [fanuc_msgs/srv/SetUFrameUTool]`: Set the current user frame number and the tool frame number.
+* `~/get_uframe_data [fanuc_msgs/srv/GetUFrameData]`: Get the user frame data.
+* `~/set_uframe_data [fanuc_msgs/srv/SetUFrameData]`: Set the user frame data.
+* `~/get_utool_data [fanuc_msgs/srv/GetUToolData]`: Get the tool frame data.
+* `~/set_utool_data [fanuc_msgs/srv/SetUToolData]`: Set the tool frame data.
+* `~/get_cartesian_position [fanuc_msgs/srv/GetCartesianPosition]`: Get the current robot's Cartesian position.
+* `~/get_tcp_speed [fanuc_msgs/srv/GetTCPSpeed]`:  Get the current tool center point (TCP) speed.
+* `~/reset [fanuc_msgs/srv/Reset]`: Reset the robot controller and make the robot ready to receive RMI instruction packets.
 
 ### Synchronized and Asynchronized I/O and numeric registers
 
@@ -293,3 +312,63 @@ gpio_topic_config:
     - start: 3
       length: 1
 ```
+
+## fanuc_controllers/fanuc_rmi_controller
+
+This controller provides the ability to control the robot with TP program instructions such as L (Linear), J (Joint), C (circular) and S (Spline).
+
+```{note}
+* Please refer to the Remote Motion Interface manual about the usage of RMI commands.
+* You can find an example application in the `fanuc_exmaples/fanuc_rmi_controller_example` package.
+```
+
+### Advertised services
+
+* `~/call_command [rmi_msgs/CallCommand]`: Call a RMI's command to control the RMI's TP program. (e.g., `FRC_Initialize`, `FRC_Abort`, `FRC_Pause`, `FRC_Continue`)
+* `~/add_motion_instruction [rmi_msgs/AddMotionInstruction]`: Add a motion instruction to RMI's TP program. (e.g., `L`, `J`, `C`, `S`)
+* `~/add_call_instruction [rmi_msgs/AddCall]`: Add the `CALL *` instruction.
+* `~/add_wait_time_instruction [rmi_msgs/AddWaitTime]`: Add the `WAIT *(sec)` instruction.
+* `~/add_wait_din_instruction [rmi_msgs/AddWaitDIN]`: Add the `WAIT DI[*]=ON/OFF` instruction.
+* `~/add_set_uframe_instruction [rmi_msgs/AddSetUFrame]`: Add the `UFRAME_NUM=*` instruction.
+* `~/add_set_utool_instruction [rmi_msgs/AddSetUTool]`: Add the `UTOOL_NUM=*` instruction.
+* `~/add_set_payload_instruction [rmi_msgs/AddSetPayload]`: Add the `PAYLOAD[*]` instruction.
+
+### Activating fanuc_rmi_controller
+
+There is two methods to activate the fanuc_rmi_controller.
+
+```{note}
+This controller cannot be activated simultaneously with controllers which require motion commands such as the joint_trajectory_controller.
+```
+
+#### Specifying the initial controller to launch
+
+You can specify the initial controller to launch by a launch argument `initial_controller`. Its default value is `joint_trajectory_controller`.
+
+```bash
+ros2 launch fanuc_moveit_config fanuc_moveit.launch.py robot_ip:=*.*.*.* robot_model:=crx10ia_l initial_controller:=fanuc_rmi_controller
+```
+
+#### Switching after launch
+
+You can switch the controller by ros2_control's CLI command.
+
+```bash
+ros2 control switch_controllers --deactivate joint_trajectory_controller --activate fanuc_rmi_controller
+```
+
+You can also switch controllers from ros 2 nodes by calling the `/controller_manager/switch_controller` service. You can find an example python code in the `fanuc_rmi_controller_example` package.
+
+```{note}
+When switching the active controller from the fanuc_rmi_controller to the joint_trajectory_controller, the hardware_interface starts motion control when the last specified control state, by the motion_control launch argument or the SwitchControlState service, is 1. Otherwise, the joint_trajectory_controller starts without motion control.
+```
+
+### Tips
+
+* Most of command packets are implemented as the fanuc_gpio_controller's services. They are available even when the fanuc_rmi_controller is not active.
+* When using RMI JSON's optional keys, set corresponding boolean values in the service request to True. For example, set `use_acc` to True and `acc` to 30 when adding `ACC30` to a motion instruction.
+* The services in rmi_msgs uses joint and cartesian positions in FANUC's coordinate system, which is different from ROS 2's ones. You can find an example python code in the `fanuc_rmi_controller_example` package about how to convert them.
+* Services to add instruction fails when the RMI's buffer, whose size is 8, is full. The remaining buffer size is updated cyclically in the fanuc_rmi_controller.
+* RMI's status is published as the `/fanuc_gpio_controller/rmi_status` topic.
+  * The `last_sequence` in the topic is a special value handled by fanuc_driver. It shows the sequence ID for the latest returned instruction packet. You can use this value to manage RMI's instruction buffer.
+  * The `last_sequence_error_message` show the cause why the last instruction packet had failure.

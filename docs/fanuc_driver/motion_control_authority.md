@@ -20,7 +20,8 @@ The topic `/fanuc_gpio_controller/robot_status/motion_possible` value indicates 
 * When `motion_possible` is false, the robot controller has motion control.
 
 ```{note}
-Even when `motion_possible` is false, other features besides motion control remain active, such as writing I/O.
+* Even when `motion_possible` is false, other features besides motion control remain active, such as writing I/O.
+* The instructions on this page are applied only to controllers which use joint hardware interface commands. The `fanuc_rmi_controller` is out of scope.
 ```
 
 The `/fanuc_gpio_controller/switch_control_state` service allows the transfer of motion control.

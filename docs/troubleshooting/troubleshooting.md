@@ -101,3 +101,13 @@ For all axes, set the "BRK_CTRL" value to DISABLE and repower the robot controll
 
 In FANUC's coordinate system, the J3 axis of 6-axis robots is defined as the angle from the horizontal plane.
 The J3 value in ROS 2 corresponds to the `J2J3 Interaction` angle shown on the Teach Pendant, which is the sum of the J2 and J3 angles.
+
+### The `~/read_error` service fails
+
+When the robot controller is R-30iB Plus series and its language setting is not English, the robot controller can return error messages in different encodings so that the `~/read_error` service can fail to read them.
+The fanuc_driver can treat them by specifying the encoding as a launch argument `encoding`.
+For example, if the robot controller's language setting is Japanese, set SHIFT-JIS like the following command.
+
+```bash
+ros2 launch fanuc_moveit_config fanuc_moveit.launch.py robot_ip:=*.*.*.* robot_model:=crx10ia_l encoding:=SHIFT-JIS
+```

@@ -92,6 +92,9 @@ This controller provides the ability to access controller data such as I/O, nume
 * `~/set_payload_id [fanuc_msgs/srv/SetPayloadID]`: Set the robot payload schedule number.
 * `~/set_payload_value [fanuc_msgs/srv/SetPayloadValue]`: Set the robot payload value.
 * `~/set_payload_comp [fanuc_msgs/srv/SetPayloadComp]`: Set the robot payload compensation.
+* `~/get_payload_id [fanuc_msgs/srv/GetPayloadID]`: Get the robot payload schedule number.
+* `~/get_payload_value [fanuc_msgs/srv/GetPayloadValue]`: Get the robot payload value.
+* `~/get_payload_comp [fanuc_msgs/srv/GetPayloadComp]`: Get the robot payload compensation.
 * `~/switch_control_state [fanuc_msgs/srv/SwitchControlState]`: Start/Stop motion control. Refer to [Motion Control Authority](/docs/fanuc_driver/motion_control_authority.md) for details.
 * `~/read_error [fanuc_msgs/srv/ReadError]`: Get up to 5 active error messages on the robot controller. When `count` is not set, this service returns the latest one error message.
 * `~/get_uframe_utool [fanuc_msgs/srv/GetUFrameUTool]`: Get the current user frame number and the tool frame number.

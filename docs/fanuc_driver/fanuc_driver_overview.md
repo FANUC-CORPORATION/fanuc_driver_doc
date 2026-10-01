@@ -60,3 +60,7 @@ This repository contains the FANUC hardware interface implementation, FANUC ros2
 ### Starting with `ROS 2 driver v1.5.0`
 
 - FANUC RMI controller
+
+### Starting with `ROS 2 driver v1.6.0` and `controller software V10.10/P37`
+
+- Getting payload schedule, payload value and payload compensation.
